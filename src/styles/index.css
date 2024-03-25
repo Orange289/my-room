@@ -1,0 +1,41 @@
+html,
+body,
+#root,
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #e8baaa;
+  font-family: Arial;
+}
+
+h1 {
+  color: #ffffff;
+  position: absolute;
+  top: 5%;
+  left: 5%;
+}
+
+.note {
+  color: #ffffff;
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+
+  a {
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: none;
+  }
+}
+
+/* canvas {
+  opacity: 0;
+  transition: opacity 0.5s;
+
+  &.loaded {
+    opacity: 1;
+  }
+} */

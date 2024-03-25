@@ -3,94 +3,38 @@ import {
   useGLTF,
   useTexture,
   OrbitControls,
-  useHelper,
-  Image,
-  TransformControls,
-  Sparkles,
-  shaderMaterial,
-  Stars,
   Sky,
-  Decal,
 } from "@react-three/drei"
-import { useControls } from "leva"
-import * as THREE from "three"
-import { useLoader, useThree } from "@react-three/fiber"
-import { useState } from "react"
-import { useRef } from "react"
-import viewImg from "../textures/alfamaView.jpg"
-
-// import { RectArealightWithHelper } from "./helpers/RectAreaLightWithHelper"
-import { RectAreaLightUniformsLib } from "three/examples/jsm/lights/RectAreaLightUniformsLib.js"
+import { useState, useEffect, useRef } from "react"
 import Plant from "./Plant"
 import Longboard from "./Longboard"
 import Tower from "./Tower"
-
 import Wings from "./Wings"
-import Windows from "./Windows"
 import Ball from "./Ball"
-import View from "./View"
 import AlfamaView from "./AlfamaView"
 import Remote from "./Remote"
 import Netflix from "./Netflix"
+import { useControls } from "leva"
 
-export default function Experience() {
+export default function Experience({ onLoaded }) {
   const { nodes } = useGLTF("/model/my-room-5.glb")
-  // console.log(nodes)
-
-  const model = useGLTF("/model/my-room-5.glb")
 
   const bakedTexture = useTexture("/model/baked-14.jpg")
   bakedTexture.flipY = false
 
-  const directionalLight = useRef()
-  // useHelper(directionalLight, THREE.DirectionalLightHelper, 1)
-
   const [showNetflix, setShowNetflix] = useState(false)
 
-  const screen = useGLTF("/model/screenContent.glb")
-
-  const { objectRotation } = useControls({
-    objectRotation: {
-      value: { x: 0.3, y: -0.7, z: 0 },
-      step: 0.1,
-    },
-  })
-
-  const { dLight2Position, dLight2Intensity } = useControls(
-    "directionalLight",
-    {
-      dLight2Position: {
-        value: { x: 3.0, y: -1.8, z: 11.3 },
-        step: 0.1,
-      },
-      dLight2Intensity: {
-        value: 3.5,
-        step: 0.1,
-      },
-    }
-  )
+  const objectRotation = {
+    x: 0.3,
+    y: -0.7,
+    z: 0,
+  }
 
   const dLightPosition = { x: 3.0, y: 5.4, z: -0.8 }
   const dLightIntensity = 2.5
 
-  const rLightPosition = { x: 5.7, y: 2, z: 7.7 }
-  const rLightIntensity = 0.6
-  const rLightWidth = 10
-  const rLightHeight = 10
-  const rLightRotation = { x: 2, y: 2, z: 3 }
-
-  const { scene } = useThree()
-
-  // RectAreaLightUniformsLib.init()
-
-  // const rectLight = new THREE.RectAreaLight(
-  //   "#ffffff",
-  //   rLightIntensity,
-  //   rLightWidth,
-  //   rLightHeight
-  // )
-  // rectLight.position.set(rLightPosition.x, rLightPosition.y, rLightPosition.z)
-  // scene.add(rectLight)
+  const dLight2Position = { x: 3.0, y: -1.8, z: 11.3 }
+  const dLight2Intensity = 3.5
 
   function onRemoteEnter() {
     document.body.style.cursor = "pointer"
@@ -104,10 +48,18 @@ export default function Experience() {
     setShowNetflix(!showNetflix)
   }
 
+  useEffect(() => {
+    onLoaded() // Call this when everything inside Experience is loaded
+  }, [onLoaded])
+
+  // const { bgColor } = useControls({
+  //   // ...
+  //   bgColor: "#e8baaa",
+  // })
+
   return (
     <>
-      {/* <TransformControls mode="rotate"> */}
-      <color args={["#030202"]} attach="background" />
+      {/* <color args={["#e8baaa"]} attach="background" /> */}
       <OrbitControls
         makeDefault
         maxPolarAngle={Math.PI / 2}
@@ -124,9 +76,8 @@ export default function Experience() {
 
       <directionalLight
         castShadow
-        ref={directionalLight}
         position={[dLight2Position.x, dLight2Position.y, dLight2Position.z]}
-        intensity={dLightIntensity}
+        intensity={dLight2Intensity}
       />
 
       <Center>
@@ -146,15 +97,6 @@ export default function Experience() {
           <Tower />
 
           <Wings />
-
-          {/* <Windows /> */}
-
-          {/* <mesh
-            geometry={screen.nodes.screenContent.geometry}
-            position={screen.nodes.screenContent.position}
-          >
-            <meshBasicMaterial color="red"></meshBasicMaterial>
-          </mesh> */}
 
           <Remote
             onRemoteClick={onRemoteClick}
@@ -177,11 +119,8 @@ export default function Experience() {
 
           <Ball />
           <AlfamaView />
-
-          {/* <View /> */}
         </group>
       </Center>
-      {/* </TransformControls> */}
     </>
   )
 }
