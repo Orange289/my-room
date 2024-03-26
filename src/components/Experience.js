@@ -1,10 +1,4 @@
-import {
-  Center,
-  useGLTF,
-  useTexture,
-  OrbitControls,
-  Sky,
-} from "@react-three/drei"
+import { Center, useGLTF, useTexture, OrbitControls } from "@react-three/drei"
 import { useState, useEffect, useRef } from "react"
 import Plant from "./Plant"
 import Longboard from "./Longboard"
@@ -53,7 +47,6 @@ export default function Experience({ onLoaded }) {
 
   return (
     <>
-      {/* <color args={["#e8baaa"]} attach="background" /> */}
       <OrbitControls
         makeDefault
         maxPolarAngle={Math.PI / 2}
@@ -61,7 +54,6 @@ export default function Experience({ onLoaded }) {
         maxAzimuthAngle={Math.PI / 4}
       />
 
-      {/* <Sky sunPosition={[0.5, 6, 6]} /> */}
       <directionalLight
         castShadow
         position={[dLightPosition.x, dLightPosition.y, dLightPosition.z]}
