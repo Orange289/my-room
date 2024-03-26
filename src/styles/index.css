@@ -28,10 +28,11 @@ h1 {
   position: absolute;
   bottom: 5%;
   right: 5%;
+  z-index: 3;
+}
 
-  a {
-    color: #ffffff;
-    font-weight: bold;
-    text-decoration: none;
-  }
+.note a {
+  color: #ffffff;
+  font-weight: bold;
+  text-decoration: none;
 }
