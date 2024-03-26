@@ -3,9 +3,7 @@ import "./styles/index.css"
 import ReactDOM from "react-dom/client"
 import { Canvas } from "@react-three/fiber"
 import Experience from "./components/Experience"
-import Overlay from "./components/Overlay"
 import { Loader } from "@react-three/drei"
-// import Loader from "./components/Loader"
 import { Suspense } from "react"
 import { useState } from "react"
 
@@ -40,6 +38,9 @@ const App = () => {
             <Experience onLoaded={() => setIsLoaded(true)} />
           </Suspense>
         </Canvas>
+        <div className="note">
+          Created by <a href="mailto:apelsanna@gmail.com">Ansu</a>
+        </div>
       </div>
 
       <Loader
@@ -52,10 +53,6 @@ const App = () => {
         }}
         barStyles={{ width: "300px" }}
       />
-
-      <div className="note">
-        Created by <a href="mailto:apelsanna@gmail.com">Ansu</a>
-      </div>
     </>
   )
 }

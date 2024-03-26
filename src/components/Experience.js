@@ -14,7 +14,6 @@ import Ball from "./Ball"
 import AlfamaView from "./AlfamaView"
 import Remote from "./Remote"
 import Netflix from "./Netflix"
-import { useControls } from "leva"
 
 export default function Experience({ onLoaded }) {
   const { nodes } = useGLTF("/model/my-room-5.glb")
@@ -49,13 +48,8 @@ export default function Experience({ onLoaded }) {
   }
 
   useEffect(() => {
-    onLoaded() // Call this when everything inside Experience is loaded
+    onLoaded()
   }, [onLoaded])
-
-  // const { bgColor } = useControls({
-  //   // ...
-  //   bgColor: "#e8baaa",
-  // })
 
   return (
     <>

@@ -11,6 +11,11 @@ body,
   font-family: Arial;
 }
 
+canvas {
+  position: relative;
+  z-index: 3;
+}
+
 h1 {
   color: #ffffff;
   position: absolute;
@@ -30,12 +35,3 @@ h1 {
     text-decoration: none;
   }
 }
-
-/* canvas {
-  opacity: 0;
-  transition: opacity 0.5s;
-
-  &.loaded {
-    opacity: 1;
-  }
-} */
